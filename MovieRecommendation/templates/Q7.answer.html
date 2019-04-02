@@ -1,0 +1,20 @@
+<div class="panel-body" style="padding:15px 0">
+    {%  for i in movies.index %}
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <a class="thumbnail" style="cursor: pointer;">
+            <div class="img" style="width: 100%;">
+                <p style="text-align: center;font-size: 1.5em"><strong>MovieID {{movies.loc[i]["MovieID"]}}</strong></p>
+            </div>
+            <div class="caption">
+                <p>Title: {{movies.loc[i]["Title"]}}</p>
+                <p>Genres:{{movies.loc[i]["Genres"]}}</p>
+            </div>
+        </a>
+    </div>
+    {%  endfor %}
+</div>
+
+<script>
+    $(".img").css({"height":$(".img").width()*0.8+"px"})
+    $(".img>p").css("lineHeight", $(".img").height()+"px")
+</script>

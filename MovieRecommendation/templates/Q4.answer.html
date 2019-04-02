@@ -1,0 +1,24 @@
+<div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-hover">
+          <thead>
+            <tr>
+                <th>#</th>
+                {% for item in commR.columns %}
+                <th>{{item}}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+                {% for i in commR.index %}
+                <tr>
+                    <td>{{commR.index[i]}}</td>
+                    <td>{{commR.loc[i].values[0]}}</td>
+                    <td>{{commR.loc[i].values[1]}}</td>
+                    <td>{{commR.loc[i].values[2]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+      </table>
+    </div>
+</div>

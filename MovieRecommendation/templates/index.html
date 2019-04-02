@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Movie Recommend</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/zdialog.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/zdialog.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            background-image: url("/static/imgs/quote_bg.jpg");
+        }
+        .img {
+            background-color: #ccc;
+        }
+        .thumbnail:hover {
+            color: red;
+            text-decoration: none;
+        }
+        .active {
+            border: 1px solid #337AB7;
+            color: red;
+        }
+        .searchIcon {
+            pointer-events: auto;
+            cursor: pointer;
+        }
+        .searchIcon:hover {
+            color: #2e6da4;
+        }
+        #loading{
+            height: 100%;
+            width: 100%;
+            display: none;
+            position: fixed;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1;
+            margin-top: 0px;
+            top: 0px;
+        }
+        #loading-center{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        #loading-center-absolute {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 200px;
+            width: 200px;
+            margin-top: -100px;
+            margin-left: -100px;
+
+        }
+        .object{
+            -moz-border-radius: 50% 50% 50% 50%;
+            -webkit-border-radius: 50% 50% 50% 50%;
+            border-radius: 50% 50% 50% 50%;
+            position: absolute;
+            border-left: 5px solid #DA70D6;
+            border-right: 5px solid #DA70D6;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            -webkit-animation: animate 2s infinite;
+            animation: animate 2s infinite;
+        }
+
+        #object_one{
+            left: 75px;
+            top: 75px;
+            width: 50px;
+            height: 50px;
+        }
+
+        #object_two{
+            left: 65px;
+            top: 65px;
+            width: 70px;
+            height: 70px;
+            -webkit-animation-delay: 0.1s;
+            animation-delay: 0.1s;
+        }
+
+        #object_three{
+            left: 55px;
+            top: 55px;
+            width: 90px;
+            height: 90px;
+            -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+        #object_four{
+            left: 45px;
+            top: 45px;
+            width: 110px;
+            height: 110px;
+            -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+
+        }
+
+        @-webkit-keyframes animate {
+
+
+            50% {
+                -ms-transform: rotate(180deg);
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+
+            100% {
+                -ms-transform: rotate(0deg);
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+        }
+
+        @keyframes animate {
+
+            50% {
+                -ms-transform: rotate(180deg);
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+
+            100% {
+                -ms-transform: rotate(0deg);
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2" style="margin-top: 40px">
+                <div class="jumbotron" style="background-color: #00CCCC">
+                    <h2 style="font-size: 2.5em;text-align: center">Welcome To Movie Recommendation!</h2>
+                    <footer style="text-align: center">author: <cite title="Source Title">Pengrui</cite></footer>
+                </div>
+            </div>
+            <div class="col-sm-12" style="height: 2px;background-color: #000000;margin-bottom: 30px"></div>
+            <div class="col-sm-12 questions">
+                <div class="col-xs-6 col-sm-4 col-md-2 Q1">
+                    <a class="thumbnail" style="cursor: pointer;">
+                        <div class="img" style="width: 100%;">
+                            <p style="text-align: center;font-size: 1.5em"><strong>Q 1</strong></p>
+                        </div>
+                        <div class="caption">
+                            <p>Read the Source Data</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-2 Q3">
+                    <a class="thumbnail" style="cursor: pointer;">
+                        <div class="img" style="width: 100%;">
+                            <p style="text-align: center;font-size: 1.5em"><strong>Q 3</strong></p>
+                        </div>
+                        <div class="caption">
+                            <p>Pearson Correlation Coefficient</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-2 Q4">
+                    <a class="thumbnail" style="cursor: pointer;">
+                        <div class="img" style="width: 100%;">
+                            <p style="text-align: center;font-size: 1.5em"><strong>Q 4</strong></p>
+                        </div>
+                        <div class="caption">
+                            <p>The same Movies' Rating Between Two Users</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-2 Q5">
+                    <a class="thumbnail" style="cursor: pointer;">
+                        <div class="img" style="width: 100%;">
+                            <p style="text-align: center;font-size: 1.5em"><strong>Q 5</strong></p>
+                        </div>
+                        <div class="caption">
+                            <p>The Similarity Degree Between Two Users</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-2 Q6">
+                    <a class="thumbnail" style="cursor: pointer;">
+                        <div class="img" style="width: 100%;">
+                            <p style="text-align: center;font-size: 1.5em"><strong>Q 6</strong></p>
+                        </div>
+                        <div class="caption">
+                            <p>The Five Most Similar Users</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-2 Q7">
+                    <a class="thumbnail" style="cursor: pointer;">
+                        <div class="img" style="width: 100%;">
+                            <p style="text-align: center;font-size: 1.5em"><strong>Q 7</strong></p>
+                        </div>
+                        <div class="caption">
+                            <p>Recommend N Movies</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 splitCharac" style="height: 2px;background-color: #ccc;margin-top: 10px;margin-bottom: 30px;display:none;"></div>
+            <div class="col-xs-12 answerContainer" style="padding: 0;position: relative;">
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div id="loading">
+        <div id="loading-center">
+            <div id="loading-center-absolute">
+                <div class="object" id="object_four"></div>
+                <div class="object" id="object_three"></div>
+                <div class="object" id="object_two"></div>
+                <div class="object" id="object_one"></div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    $(function(){
+
+        $(".img").css({"height":$(".img").width()*0.6+"px"})
+        $(".img>p").css("lineHeight", $(".img").height()+"px")
+
+        $(".Q1").mousedown(function(){
+            $(this).siblings().children().removeClass("active")
+            $(".splitCharac").show()
+            $(this).children().addClass("active")
+
+            $("#loading").show()
+            $.post("/getData", {},function(data, status) {
+
+                if (status) {
+                     $("#loading").hide()
+                     $(".answerContainer").html(data)
+                }
+            });
+        })
+
+        $(".Q3,.Q4,.Q5,.Q6,.Q7").mousedown(function(){
+            $(this).siblings().children().removeClass("active")
+            $(".splitCharac").show()
+            $(this).children().addClass("active")
+            var i = $(this).index()
+
+            $("#loading").show()
+            $.post("/getInputPage", {index:i},function(data, status) {
+
+                if (status) {
+                     $("#loading").hide()
+                     $(".answerContainer").html(data)
+                }
+            });
+        })
+
+    })
+
+</script>
+</body>
+</html>

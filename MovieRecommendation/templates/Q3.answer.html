@@ -1,0 +1,17 @@
+<div class="answer panel panel-primary col-xs-12 movieRatings" style="padding: 0px;border: none;">
+    <div class="panel-heading">Q3. Pearson Correlation Coefficient:</div>
+    <div class="panel-body">
+        import numpy as np <br>
+        def getPearsonCC(data1,data2): <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;data1_ave = np.mean(data1)  #数据1的平均值 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;data2_ave = np.mean(data2)  #数据2的平均值 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;numerator = np.sum((data1-data1_ave)*(data2-data2_ave))     #pearson相关系数的分子 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;denominator = np.sqrt(np.sum((data1-data1_ave)*(data1-data1_ave)))*np.sqrt(np.sum((data2-data2_ave)*(data2-data2_ave)))     #pearson相关系数的分母 <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;if(denominator==0): <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0 <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;pearson_r = numerator/denominator   #pearson相关系数 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return pearson_r <br>
+    </div>
+</div>

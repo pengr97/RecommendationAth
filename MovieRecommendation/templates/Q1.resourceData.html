@@ -1,0 +1,88 @@
+
+<div class="answer col-xs-12 sourceData" style="padding: 0px;">
+    <div class="panel panel-primary col-xs-4"  style="padding: 1px;border: none;">
+        <div class="panel-heading">Q1. UsersData:</div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                  <table class="table table-hover">
+                      <thead>
+                            <tr>
+                                <th>#</th>
+                                {% for item in Data["usersData"].columns %}
+                                <th>{{item}}</th>
+                                {% endfor %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in Data["usersData"].index[:50] %}
+                                <tr>
+                                    <td>{{Data["usersData"].index[i]}}</td>
+                                    <td>{{Data["usersData"].loc[i].values[0]}}</td>
+                                    <td>{{Data["usersData"].loc[i].values[1]}}</td>
+                                    <td>{{Data["usersData"].loc[i].values[2]}}</td>
+                                    <td>{{Data["usersData"].loc[i].values[3]}}</td>
+                                    <td>{{Data["usersData"].loc[i].values[4]}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary col-xs-4"  style="padding: 1px;border: none;">
+        <div class="panel-heading">Q1. MoviesData:</div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                  <table class="table table-hover">
+                      <thead>
+                            <tr>
+                                <th>#</th>
+                                {% for item in Data["movieData"].columns %}
+                                <th>{{item}}</th>
+                                {% endfor %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in Data["movieData"].index[:50] %}
+                                <tr>
+                                    <td>{{Data["movieData"].index[i]}}</td>
+                                    <td>{{Data["movieData"].loc[i].values[0]}}</td>
+                                    <td>{{Data["movieData"].loc[i].values[1]}}</td>
+                                    <td>{{Data["movieData"].loc[i].values[2]}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary col-xs-4"  style="padding: 1px;border: none;">
+        <div class="panel-heading">Q1. RatingsData:</div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                  <table class="table table-hover">
+                      <thead>
+                            <tr>
+                                <th>#</th>
+                                {% for item in Data["ratingsData"].columns %}
+                                <th>{{item}}</th>
+                                {% endfor %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in Data["ratingsData"].index[:50] %}
+                                <tr>
+                                    <td>{{Data["ratingsData"].index[i]}}</td>
+                                    <td>{{Data["ratingsData"].loc[i].values[0]}}</td>
+                                    <td>{{Data["ratingsData"].loc[i].values[1]}}</td>
+                                    <td>{{Data["ratingsData"].loc[i].values[2]}}</td>
+                                    <td>{{Data["ratingsData"].loc[i].values[3]}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</div>
+

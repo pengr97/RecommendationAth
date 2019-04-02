@@ -1,0 +1,37 @@
+<div class="answer panel panel-primary col-xs-12 movieRatings" style="padding: 0px;border: none;">
+    <div class="panel-heading">Q4. The Same Movies' Rating Between Two Users:</div>
+    <div class="panel-body">
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" id="answer4" placeholder="please input two userIDs separated by a blank space:">
+            <span class="glyphicon glyphicon-search form-control-feedback searchIcon" aria-hidden="true"></span>
+        </div>
+        <div class="paneChild panel panel-default col-xs-12" style="padding: 0px;">
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(".searchIcon").click(function(){
+        var val = $("#answer4").val()
+        if(val==""){
+            $.DialogByZ.Alert({Title: "提示", Content: "请先输入两个用户ID",BtnL:"确定",FunL:alerts})
+        }else if(val.split(" ").length!=2){
+            $.DialogByZ.Alert({Title: "提示", Content: "请正确输入两个用空格分隔开的用户ID",BtnL:"确定",FunL:alerts})
+        }else {
+            $("#loading").show()
+            $.post("/getQ4Ans", {val:val},function(data, status) {
+
+                if (status) {
+                     $("#loading").hide()
+                     $(".paneChild").html(data)
+                }
+            });
+        }
+    })
+
+    function alerts(){
+        $.DialogByZ.Close();
+    }
+</script>

@@ -1,0 +1,29 @@
+<div class="answer panel panel-primary col-xs-12 recommendMovie" style="padding: 0px;border: none;">
+<div class="panel-heading">Q7. Recommend N Movies:</div>
+<div class="panel-body">
+    <div class="form-group has-feedback">
+        <input type="text" class="form-control" id="answer7" placeholder="please input a userID:">
+        <span class="glyphicon glyphicon-search form-control-feedback searchIcon" aria-hidden="true"></span>
+    </div>
+    <div class="paneChild panel panel-default col-xs-12" style="padding: 0px;">
+
+    </div>
+</div>
+</div>
+<script>
+    $(".searchIcon").click(function(){
+        var val = $("#answer7").val()
+        if(val=="" | val.split(" ").length!=1){
+            $.DialogByZ.Alert({Title: "提示", Content: "请先输入一位用户ID",BtnL:"确定",FunL:alerts})
+        }else {
+            $("#loading").show()
+            $.post("/getQ7Ans", {val:val},function(data, status) {
+
+                if (status) {
+                     $("#loading").hide()
+                     $(".paneChild").html(data)
+                }
+            });
+        }
+    })
+</script>
